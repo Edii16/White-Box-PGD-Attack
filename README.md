@@ -2,30 +2,47 @@
 
 This repository implements a white-box Projected Gradient Descent (PGD) adversarial attack on a pre-trained GoogLeNet model using PyTorch.
 
-The attack perturbs an input image within an L-infinity epsilon bound to cause misclassification.
+## Disclaimer
+
+This project is for fun and educational purposes only.
+
+It demonstrates a white-box PGD attack, which makes several strong assumptions that are usually unrealistic in real-world settings. In practice, an attacker typically:
+
+- Does not know the exact architecture of the target model
+- Does not have access to the model weights or gradients
+- Does not know the training data or preprocessing used
+
+Because of these limitations, white-box attacks like this are mainly useful for research, debugging, and understanding model behavior rather than real-world attacks.
+
+For a more realistic setting, check out my other repository that implements a black-box PGD-style attack using a substitute model and transferability, evaluated against models accessed via Google Image Search.
+
 
 ## Requirements
 
 Python 3.9+ recommended.
 
 Install dependencies:
-
+```
 pip install -r requirements.txt
+```
 
 requirements.txt:
-
+```
 numpy==2.3.2
 Pillow==11.3.0
 torch==2.8.0
 torchvision==0.23.0
+```
 
 ## Files
 
+```
 .
 ├── attack.py
 ├── requirements.txt
 ├── README.md
 └── output_image.png
+```
 
 ## Description
 
@@ -54,6 +71,7 @@ Steps:
 
 The attack is configured in the code as:
 
+```
 x_adv = pgd_attack(
     model,
     x,
@@ -64,13 +82,13 @@ x_adv = pgd_attack(
     clip_value_min=0.0,
     clip_value_max=1.0
 )
+```
 
 Parameter meanings:
-- epsilon: maximum L∞ perturbation
+- epsilon: maximum allowed noise per pixel
 - num_steps: number of PGD iterations
 - step_size: step size per iteration
 - clip_value_min/max: valid pixel range
-- momentum: > 0 enables momentum iterative method (MIM)
 
 ## Output
 
@@ -78,9 +96,3 @@ Parameter meanings:
 - Pixel values remain within [0, 1]
 - Perturbation bounded by epsilon
 
-## Notes
-
-- No ImageNet normalization is applied
-- Large num_steps values increase runtime
-- Model train/eval mode switching is used for gradient computation
-- Intended for research and educational purposes only
