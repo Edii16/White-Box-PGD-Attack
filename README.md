@@ -38,10 +38,9 @@ torchvision==0.23.0
 
 ```
 .
-├── attack.py
+├── imageprivacy.py
 ├── requirements.txt
-├── README.md
-└── output_image.png
+└── README.md
 ```
 
 ## Description
