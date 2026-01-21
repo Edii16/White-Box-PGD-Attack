@@ -12,10 +12,6 @@ It demonstrates a white-box PGD attack, which makes several strong assumptions t
 - Does not have access to the model weights or gradients
 - Does not know the training data or preprocessing used
 
-Because of these limitations, white-box attacks like this are mainly useful for research, debugging, and understanding model behavior rather than real-world attacks.
-
-For a more realistic setting, check out my other repository that implements a black-box PGD-style attack using a substitute model and transferability, evaluated against models accessed via Google Image Search.
-
 
 ## Requirements
 
